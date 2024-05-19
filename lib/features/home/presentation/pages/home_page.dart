@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
         height: ScreenSize.height(context),
         width: ScreenSize.width(context),
         child: Stack(
+          
           children: [
             Background(),
             SizedBox(
