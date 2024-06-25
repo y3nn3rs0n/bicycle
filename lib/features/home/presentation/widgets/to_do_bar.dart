@@ -1,9 +1,13 @@
+import 'package:bicycle/core/models/cycles_model.dart';
+import 'package:bicycle/core/utils/constants/app_assets.dart';
+import 'package:bicycle/core/utils/constants/app_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:bicycle/features/home/presentation/widgets/to_do_bar_item.dart';
 
 class ToDoBar extends StatelessWidget {
-  const ToDoBar({super.key});
+   final CyclesModel selectedCycle;
+
+  const ToDoBar({super.key, required this.selectedCycle});
 
   @override
   Widget build(BuildContext context) {
@@ -15,25 +19,33 @@ class ToDoBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ToDoBarItem(
-              itemLogo: Icons.text_rotation_angleup_outlined,
-              onPress: () {},
+              itemLogo: Image.asset(
+                AppAssets.cycle,
+                fit: BoxFit.contain,
+              ),
+              onPress: () => AppFunctions.goTodetails(cycle: selectedCycle),
             ),
             ToDoBarItem(
-              itemLogo: Icons.pedal_bike_rounded,
-              onPress: () => context.go("/details"),
+             itemLogo: Image.asset(
+                AppAssets.hat,
+                fit: BoxFit.contain,
+              ),
+              onPress: () => AppFunctions.goToHatsPage(),
             ),
             ToDoBarItem(
-              itemLogo: Icons.electric_bike,
-              onPress: () {},
+             itemLogo: Image.asset(
+                AppAssets.mountain,
+                fit: BoxFit.contain,
+              ),
+              onPress: () => AppFunctions.goToMountainPage(),
             ),
             ToDoBarItem(
-              itemLogo: Icons.stacked_bar_chart_sharp,
-              onPress: () {},
+              itemLogo: Image.asset(
+                AppAssets.road,
+                fit: BoxFit.contain,
+              ),
+              onPress: () => AppFunctions.goToUrbanPage(),
             ),
-            ToDoBarItem(
-              itemLogo: Icons.stacked_bar_chart_sharp,
-              onPress: () {},
-            )
           ],
         ),
       ),

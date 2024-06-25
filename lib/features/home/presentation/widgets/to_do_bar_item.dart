@@ -1,7 +1,8 @@
+import 'package:bicycle/core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ToDoBarItem extends StatelessWidget {
-  final IconData? itemLogo;
+  final Image itemLogo;
   final Function onPress;
 
   const ToDoBarItem({
@@ -27,7 +28,12 @@ class ToDoBarItem extends StatelessWidget {
                 ],
               ),
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: itemLogo != "" ? Icon(itemLogo) : Text("ALL")),
+          child: itemLogo != "" ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image(image: itemLogo.image,
+            color: AppColors.primary,
+            ),
+          ) : Text("ALL")),
     );
   }
 }

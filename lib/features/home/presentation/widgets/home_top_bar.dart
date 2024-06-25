@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bicycle/core/utils/constants/app_assets.dart';
 import 'package:bicycle/core/utils/screen_size.dart';
 
 class HomeTopBar extends StatelessWidget {
@@ -20,10 +19,6 @@ class HomeTopBar extends StatelessWidget {
                 "Chose your bike",
                 style: TextStyle(color: Colors.white),
               ),
-              GestureDetector(
-                  child: Image.asset(
-                AppAssets.searchIcon,
-              ))
             ],
           ),
         ),

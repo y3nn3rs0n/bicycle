@@ -1,7 +1,7 @@
-import 'package:bicycle/core/utils/constants/app_assets.dart';
+import 'package:bicycle/core/utils/constants/app_colors.dart';
+import 'package:bicycle/core/utils/constants/app_functions.dart';
 import 'package:bicycle/core/utils/screen_size.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class MainTopBar extends StatelessWidget {
   const MainTopBar({
@@ -14,24 +14,29 @@ class MainTopBar extends StatelessWidget {
         child: SizedBox(
           height: 90,
           width: ScreenSize.width(context),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () => context.go("/"),
-                  child: Image.asset(
-                    AppAssets.backIcon,
-                  )),
-              Text(
-                "Chose your bike",
-                style: TextStyle(color: Colors.white),
-              ),
-              GestureDetector(
-                  child: Image.asset(
-                AppAssets.searchIcon,
-              ))
-            ],
-          ),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            GestureDetector(
+                onTap: () => AppFunctions.pop(),
+                child: Container(
+                  width: 35,
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(52, 200, 232, 1),
+                          Color.fromRGBO(78, 74, 242, 1)
+                        ],
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: AppColors.primary,
+                  ),
+                ))
+          ]),
         ),
       );
 }

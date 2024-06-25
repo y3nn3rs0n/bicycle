@@ -1,10 +1,13 @@
+import 'package:bicycle/core/models/cycles_model.dart';
+import 'package:bicycle/core/utils/constants/app_colors.dart';
+import 'package:bicycle/core/utils/constants/app_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:bicycle/core/utils/constants/app_assets.dart';
 import 'package:bicycle/core/utils/screen_size.dart';
 
 class MainCard extends StatelessWidget {
+  final CyclesModel selectedCycle;
   const MainCard({
-    super.key,
+    super.key, required this.selectedCycle,
   });
 
   @override
@@ -26,7 +29,22 @@ class MainCard extends StatelessWidget {
                 spreadRadius: 1.0,
               ),
             ]),
-        child: Image.asset(AppAssets.bicycle01),
+      child: GestureDetector(
+        onTap: () => AppFunctions.goTodetails(cycle: selectedCycle),
+        child: Image.network(
+            selectedCycle.image,
+            loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return Center(child: CircularProgressIndicator(color: AppColors.splashBackground,));
+              }
+            },
+            errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+              return Text('Error al cargar la imagen');
+            },
+          ),
+      ),
       ),
     );
   }

@@ -1,13 +1,17 @@
+import 'package:bicycle/core/models/cycles_model.dart';
+import 'package:bicycle/core/utils/constants/app_colors.dart';
+import 'package:bicycle/core/utils/constants/app_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:bicycle/core/utils/screen_size.dart';
 
 class SecondaryDetailsBody extends StatelessWidget {
-  const SecondaryDetailsBody({super.key});
+  final CyclesModel selectedCycle;
+  const SecondaryDetailsBody({super.key, required this.selectedCycle});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ScreenSize.height(context) * 0.60,
+      height: ScreenSize.height(context) * 0.40,
       width: ScreenSize.width(context),
       decoration: BoxDecoration(
         color: Color.fromRGBO(53, 63, 84, 1),
@@ -25,57 +29,31 @@ class SecondaryDetailsBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 150,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      // Estilo cuando el botón está sin presionar
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
-                      elevation: MaterialStateProperty.all(5),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      )),
-                      // Estilo cuando el botón está presionado
-                      shadowColor:
-                          MaterialStateProperty.all(Colors.grey.shade900),
+            padding: const EdgeInsets.only(top: 30, bottom: 10, left: 30, right: 30),
+            child:  Column(
+            children: [
+              Text(selectedCycle.name,
+              style: TextStyle(
+                color: AppColors.textWhite
+              ),
+              ),
+              SizedBox(height: 10,),
+              SizedBox(
+                height: ScreenSize.height(context) * 0.19,
+                child: SingleChildScrollView(
+                  child: Text(
+                    selectedCycle.description,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      color: AppColors.textWhite
                     ),
-                    child: Text('Press Me'),
-                  ),
+                    ),
                 ),
-                SizedBox(
-                  width: 150,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      // Estilo cuando el botón está sin presionar
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
-                      elevation: MaterialStateProperty.all(5),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      )),
-                      // Estilo cuando el botón está presionado
-                      shadowColor:
-                          MaterialStateProperty.all(Colors.grey.shade900),
-                    ),
-                    child: Text('Press Me'),
-                  ),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
-          Text("data"),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-                "The LR01 uses the same design as the most iconic bikes from PEUGEOT Cycles' 130-year history and combines it with agile, dynamic performance that's perfectly suited to navigating today's cities. As well as a lugged steel frame and iconic PEUGEOT black-and-white chequer design, this city bike also features a 16-speed Shimano Claris drivetrain."),
           ),
+         
           Container(
               width: double.infinity,
               height: 100,
@@ -93,18 +71,23 @@ class SecondaryDetailsBody extends StatelessWidget {
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal:40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("000"),
+                    Text(
+                    AppFunctions.formatPrice(selectedCycle.price) ,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: AppColors.textWhite
+                    ),
+                    ),
                     SizedBox(
-                      width: 150,
+                      width: 120,
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                          // Estilo cuando el botón está sin presionar
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blue),
                           elevation: MaterialStateProperty.all(5),
@@ -112,11 +95,10 @@ class SecondaryDetailsBody extends StatelessWidget {
                               MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           )),
-                          // Estilo cuando el botón está presionado
                           shadowColor:
                               MaterialStateProperty.all(Colors.grey.shade900),
                         ),
-                        child: Text('Press Me'),
+                        child: Text('Add to car'),
                       ),
                     )
                   ],

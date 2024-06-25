@@ -11,4 +11,5 @@ class AppAssets {
   static const String road = "assets/icons/road.png";
   static const String mountain = "assets/icons/mountain.png";
   static const String hat = "assets/icons/hat.png";
+  static const String splashAnimation = "assets/animations/splash.gif";
 }
